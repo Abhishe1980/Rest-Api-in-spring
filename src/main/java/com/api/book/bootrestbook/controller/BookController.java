@@ -1,11 +1,13 @@
 package com.api.book.bootrestbook.controller;
 
+
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.services.BookService;
@@ -14,15 +16,20 @@ import com.entities.Book;
 @RestController
 @Controller
 public class BookController{
-
-    @Autowired(required=false)
-    private BookService bookService;
-
+    public BookService bookService;
+    public BookController(){
+        this.bookService = new BookService();
+    }
     @GetMapping("/books")
     public List<Book> getbook(){
-    
 
         return this.bookService.getAllBooks();
+    }
+    
+    @PostMapping("/book")
+    public Book createBook(@RequestBody() Book b){
+        
+    	return this.bookService.createBook(b);
     }
     
     @GetMapping("/books/{id}")

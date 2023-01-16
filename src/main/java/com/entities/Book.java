@@ -1,9 +1,9 @@
 package com.entities;
 
 public class Book {
-    private int id;
-    private String title;
-    private String author;
+    public int id;
+    public String title;
+    public String author;
     public Book(int id, String title, String author) {
         this.id = id;
         this.title = title;
